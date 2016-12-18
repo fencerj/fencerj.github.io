@@ -1,0 +1,698 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google853817f072746855.html" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="0x00 简介如果只是分隔屏幕，配色的变化，其实客户端item2以及screen就已经很好了。那我们为什么要使用tmux呢？为什么使用tmux：
+
+断开ssh或关闭电脑，你的ssh可以重新连接，能够保持你的工作环境连续性。前提实在服务器端装上tumx。使用tmux会话的分离与连接就可以轻松解决以上问题，分离（detach）可以使终端会话在后台运行，连接（attach）可以重新打开在后台运行的会话，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tmux教程">
+<meta property="og:url" content="http://fencerj.github.io/2016/12/13/tmux教程/index.html">
+<meta property="og:site_name" content="A Geek With iOS">
+<meta property="og:description" content="0x00 简介如果只是分隔屏幕，配色的变化，其实客户端item2以及screen就已经很好了。那我们为什么要使用tmux呢？为什么使用tmux：
+
+断开ssh或关闭电脑，你的ssh可以重新连接，能够保持你的工作环境连续性。前提实在服务器端装上tumx。使用tmux会话的分离与连接就可以轻松解决以上问题，分离（detach）可以使终端会话在后台运行，连接（attach）可以重新打开在后台运行的会话，">
+<meta property="og:updated_time" content="2016-12-13T07:59:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tmux教程">
+<meta name="twitter:description" content="0x00 简介如果只是分隔屏幕，配色的变化，其实客户端item2以及screen就已经很好了。那我们为什么要使用tmux呢？为什么使用tmux：
+
+断开ssh或关闭电脑，你的ssh可以重新连接，能够保持你的工作环境连续性。前提实在服务器端装上tumx。使用tmux会话的分离与连接就可以轻松解决以上问题，分离（detach）可以使终端会话在后台运行，连接（attach）可以重新打开在后台运行的会话，">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6254786771867928000,
+      author: 'IvanJ'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://fencerj.github.io/2016/12/13/tmux教程/"/>
+
+  <title> Tmux教程 | A Geek With iOS </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-74399018-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?ec401fdeae68dca7f08b9222811e8d36";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">A Geek With iOS</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Tmux教程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-13T15:50:45+08:00" content="2016-12-13">
+              2016-12-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/13/tmux教程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/13/tmux教程/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="0x00-简介"><a href="#0x00-简介" class="headerlink" title="0x00 简介"></a>0x00 简介</h3><p>如果只是分隔屏幕，配色的变化，其实客户端item2以及screen就已经很好了。那我们为什么要使用tmux呢？<br>为什么使用tmux：</p>
+<blockquote>
+<p>断开ssh或关闭电脑，你的ssh可以重新连接，能够保持你的工作环境连续性。前提实在服务器端装上tumx。使用tmux会话的分离与连接就可以轻松解决以上问题，分离（detach）可以使终端会话在后台运行，连接（attach）可以重新打开在后台运行的会话，也可以多个终端连接同一会话。</p>
+</blockquote>
+<h3 id="0x01安装"><a href="#0x01安装" class="headerlink" title="0x01安装"></a>0x01安装</h3><h4 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h4><pre><code>brew install tmux
+</code></pre><h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><pre><code>yum install tmux 或 apt install tmux
+</code></pre><h5 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h5><blockquote>
+<p>Windows下可以使用cygwin来安装 cygwin，cygwin是图形安装界面，请确保在 Select Packages 界面出现时，选中 tmux 即可。</p>
+</blockquote>
+<h3 id="tmux的基本概念"><a href="#tmux的基本概念" class="headerlink" title="tmux的基本概念"></a>tmux的基本概念</h3><p>启动之后，可以看到命令行最底部多了一条绿色的状态条，上面显示了一些信息，比如计算机名和时间等。<br>Session(会话)</p>
+<p>一组窗口的集合，通常用来概括同一个任务。session可以有自己的名字便于任务之间的切换。</p>
+<h4 id="Window-窗口"><a href="#Window-窗口" class="headerlink" title="Window(窗口)"></a>Window(窗口)</h4><p>单个可见窗口。Windows有自己的编号，也可以认为和ITerm2中的Tab类似。</p>
+<p>当你新建一个会话的时候，tmux 已经自动给你在新会话中自动创建了一个窗口(Window)，窗口的编号从0开始，名称则默认为当前工作目录或者当前运行的程序，都显示在下方的状态条中。如下图所示，我将工作目录切换到了~/Documents，窗口0的名称也随之变换。</p>
+<h4 id="Pane-窗格"><a href="#Pane-窗格" class="headerlink" title="Pane(窗格)"></a>Pane(窗格)</h4><p>tmux 下可以有多个会话，会话下又可以有多个窗口，那么同样，窗口下还可以有多个窗格, 一个窗口可以切分成多个窗格，主要的切分方法有两种，垂直切分和水平切分。</p>
+<h4 id="tmux的基本操作"><a href="#tmux的基本操作" class="headerlink" title="tmux的基本操作"></a>tmux的基本操作</h4><p>前置操作(Prefix-Command)，所有下面介绍的快捷键，都必须以前置操作开始。tmux默认的前置操作是<code>CTRL+b</code>。</p>
+<h4 id="会话相关"><a href="#会话相关" class="headerlink" title="会话相关"></a>会话相关</h4><ul>
+<li><code>新建会话(create)</code>: tmux new-session -s &lt;会话名称&gt; or tmux new -s &lt;会话名称&gt;</li>
+<li></li>
+<li><code>分离会话(detach)</code>: prefix d,退出tmux但是不关闭掉进程，方便下次进入</li>
+<li></li>
+<li><code>连接会话(attach)</code>: tmux attach -t &lt;目标会话名&gt; or tmux a -t &lt;目标会话名&gt;, 被分离的会话，还可以重新连接上</li>
+<li><code>tmux ls:</code> 列出所有的会话</li>
+<li><code>prefix $</code>: 重命名当前会话</li>
+</ul>
+<h4 id="窗口相关"><a href="#窗口相关" class="headerlink" title="窗口相关"></a>窗口相关</h4><p>tmux new -n &lt;窗口名&gt;: 创建会话的时候附上 -n 参数，来给窗口制定一个名称</p>
+<ul>
+<li>新建窗口: prefix c</li>
+<li>上一个窗口（previous）: prefix p</li>
+<li>下一个窗口（next）: prefix n</li>
+<li>切换到上一个活动的窗口: prefix space</li>
+<li>使用窗口号切换: prefix 窗口号</li>
+<li>窗口列表: prefix w</li>
+<li>关闭一个窗口: prefix &amp;</li>
+<li>更改窗口名称: prefix ,</li>
+</ul>
+<h4 id="窗格相关"><a href="#窗格相关" class="headerlink" title="窗格相关"></a>窗格相关</h4><ul>
+<li><p>查看所有窗格的编号: prefix q</p>
+</li>
+<li><p>垂直切分（把窗口垂直切分成左右两等分）：prefix %</p>
+</li>
+<li><p>水平切分（把窗口水平切分成上下两等分）：prefix “</p>
+</li>
+<li><p>窗格切换: prefix o</p>
+</li>
+<li><p>按制定方向切换窗格: prefix 方向键</p>
+</li>
+<li><p>更改窗格布局: prefix 空格, 可以在这五个默认的窗格布局之中轮流切换:</p>
+<ul>
+<li><p>水平平分（even-horizontal）</p>
+</li>
+<li><p>垂直平分（even-vertical）</p>
+</li>
+<li><p>主窗格最大化，其他窗格水平平分（main-horizontal）</p>
+</li>
+<li><p>主窗格最大化，其他窗格垂直平分（main-vertical）</p>
+</li>
+<li><p>平铺，窗格均等分（tiled）</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/06/jenkins-xcode-ftp-ota可持续化集成全过程/" rel="next" title="Jenkins+xcode+ftp+ota可持续化集成全过程">
+                <i class="fa fa-chevron-left"></i> Jenkins+xcode+ftp+ota可持续化集成全过程
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/18/weex与rn比较/" rel="prev" title="Weex与rn比较">
+                Weex与rn比较 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/13/tmux教程/"
+           data-title="Tmux教程" data-url="http://fencerj.github.io/2016/12/13/tmux教程/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Ivan_J" />
+          <p class="site-author-name" itemprop="name">Ivan_J</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#0x00-简介"><span class="nav-number">1.</span> <span class="nav-text">0x00 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01安装"><span class="nav-number">2.</span> <span class="nav-text">0x01安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mac"><span class="nav-number">2.1.</span> <span class="nav-text">Mac</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux"><span class="nav-number">2.2.</span> <span class="nav-text">Linux</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Windows"><span class="nav-number">2.2.1.</span> <span class="nav-text">Windows</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tmux的基本概念"><span class="nav-number">3.</span> <span class="nav-text">tmux的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Window-窗口"><span class="nav-number">3.1.</span> <span class="nav-text">Window(窗口)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pane-窗格"><span class="nav-number">3.2.</span> <span class="nav-text">Pane(窗格)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#tmux的基本操作"><span class="nav-number">3.3.</span> <span class="nav-text">tmux的基本操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#会话相关"><span class="nav-number">3.4.</span> <span class="nav-text">会话相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#窗口相关"><span class="nav-number">3.5.</span> <span class="nav-text">窗口相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#窗格相关"><span class="nav-number">3.6.</span> <span class="nav-text">窗格相关</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ivan_J</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"IvanBlogg"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
