@@ -86,12 +86,40 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="A Geek With iOS">
-<meta property="og:url" content="http://fencerj.github.io/archives/2016/02/index.html">
+<meta name="description" content="0x00 环境搭建安装基础环境安装nvm
+brew install nvm
+安装node
+nvm install stable
+常用 nvm 命令
+nvm use &amp;lt;version&amp;gt; // 切换版本
+nvm ls-remote // 查看远程 Node.js 的版本
+nvm ls  // 查看本地安装的 Node.js 的版本
+安装 react-native在安装 react-nati">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React学习笔记(0)">
+<meta property="og:url" content="http://fencerj.github.io/2016/12/20/React学习笔记-0/index.html">
 <meta property="og:site_name" content="A Geek With iOS">
+<meta property="og:description" content="0x00 环境搭建安装基础环境安装nvm
+brew install nvm
+安装node
+nvm install stable
+常用 nvm 命令
+nvm use &amp;lt;version&amp;gt; // 切换版本
+nvm ls-remote // 查看远程 Node.js 的版本
+nvm ls  // 查看本地安装的 Node.js 的版本
+安装 react-native在安装 react-nati">
+<meta property="og:updated_time" content="2016-12-21T15:18:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="A Geek With iOS">
+<meta name="twitter:title" content="React学习笔记(0)">
+<meta name="twitter:description" content="0x00 环境搭建安装基础环境安装nvm
+brew install nvm
+安装node
+nvm install stable
+常用 nvm 命令
+nvm use &amp;lt;version&amp;gt; // 切换版本
+nvm ls-remote // 查看远程 Node.js 的版本
+nvm ls  // 查看本地安装的 Node.js 的版本
+安装 react-native在安装 react-nati">
 
 
 
@@ -112,9 +140,9 @@
 
 
 
-  <link rel="canonical" href="http://fencerj.github.io/archives/2016/02/"/>
+  <link rel="canonical" href="http://fencerj.github.io/2016/12/20/React学习笔记-0/"/>
 
-  <title> 归档 | A Geek With iOS </title>
+  <title> React学习笔记(0) | A Geek With iOS </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -154,7 +182,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -232,66 +260,170 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 8 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                React学习笔记(0)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-20T15:06:16+08:00" content="2016-12-20">
+              2016-12-20
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/20/React学习笔记-0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/20/React学习笔记-0/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <h2 id="0x00-环境搭建"><a href="#0x00-环境搭建" class="headerlink" title="0x00 环境搭建"></a>0x00 环境搭建</h2><h3 id="安装基础环境"><a href="#安装基础环境" class="headerlink" title="安装基础环境"></a>安装基础环境</h3><p>安装nvm</p>
+<pre><code>brew install nvm
+</code></pre><p>安装node</p>
+<pre><code>nvm install stable
+</code></pre><p>常用 nvm 命令</p>
+<pre><code>nvm use &lt;version&gt; // 切换版本
+nvm ls-remote // 查看远程 Node.js 的版本
+nvm ls  // 查看本地安装的 Node.js 的版本
+</code></pre><h3 id="安装-react-native"><a href="#安装-react-native" class="headerlink" title="安装 react-native"></a>安装 react-native</h3><p>在安装 react-native 之前，需要确保 Node.js 已经安装且在环境变量中；需要确保 Xcode 已经安装且最好是7.1 或者更高版本</p>
+<ol>
+<li><p>通过Homebrew 安装watchman和flow</p>
+<pre><code>brew install watchman
+brew install flow
+</code></pre></li>
+<li><p>安装完成后，我们就可以通过 npm 安装react-native-cli 的命令行工具：</p>
+<pre><code>$ npm install -g react-native-cli  // -g 表示全局安装
+</code></pre><p>注：如果安装不成功或者很慢，是因为react-native命令是从npm官网源安装，我们可以改用淘宝镜像源来安装</p>
+<pre><code> $ npm config set registry https://registry.npm.taobao.org
+$ npm config set disturl https://npm.taobao.org/dist
+</code></pre></li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/18/weex与rn比较/" rel="next" title="Weex与rn比较">
+                <i class="fa fa-chevron-left"></i> Weex与rn比较
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/21/React学习笔记-1-语法/" rel="prev" title="React学习笔记(1)-语法">
+                React学习笔记(1)-语法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
         </div>
       
-      
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/02/28/你get了无数技能，为什么一事无成/" itemprop="url">
-              
-                <span itemprop="name">你Get了无数技能，为什么一事无成</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-02-28T01:22:08+08:00"
-              content="2016-02-28" >
-          02-28
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
 
-  </section>
-
-  
-
+      
+    </div>
+  </div>
 
 
           </div>
@@ -299,6 +431,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/20/React学习笔记-0/"
+           data-title="React学习笔记(0)" data-url="http://fencerj.github.io/2016/12/20/React学习笔记-0/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -318,8 +458,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -362,6 +511,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-环境搭建"><span class="nav-number">1.</span> <span class="nav-text">0x00 环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装基础环境"><span class="nav-number">1.1.</span> <span class="nav-text">安装基础环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-react-native"><span class="nav-number">1.2.</span> <span class="nav-text">安装 react-native</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -458,11 +618,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
