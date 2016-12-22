@@ -108,7 +108,8 @@ nvm use &amp;lt;version&amp;gt; // 切换版本
 nvm ls-remote // 查看远程 Node.js 的版本
 nvm ls  // 查看本地安装的 Node.js 的版本
 安装 react-native在安装 react-nati">
-<meta property="og:updated_time" content="2016-12-21T15:18:24.000Z">
+<meta property="og:image" content="http://fencerj.github.io/react线路图.jpg">
+<meta property="og:updated_time" content="2016-12-22T05:43:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React学习笔记(0)">
 <meta name="twitter:description" content="0x00 环境搭建安装基础环境安装nvm
@@ -120,6 +121,7 @@ nvm use &amp;lt;version&amp;gt; // 切换版本
 nvm ls-remote // 查看远程 Node.js 的版本
 nvm ls  // 查看本地安装的 Node.js 的版本
 安装 react-native在安装 react-nati">
+<meta name="twitter:image" content="http://fencerj.github.io/react线路图.jpg">
 
 
 
@@ -345,10 +347,46 @@ brew install flow
 <li><p>安装完成后，我们就可以通过 npm 安装react-native-cli 的命令行工具：</p>
 <pre><code>$ npm install -g react-native-cli  // -g 表示全局安装
 </code></pre><p>注：如果安装不成功或者很慢，是因为react-native命令是从npm官网源安装，我们可以改用淘宝镜像源来安装</p>
-<pre><code> $ npm config set registry https://registry.npm.taobao.org
+<pre><code>  $ npm config set registry https://registry.npm.taobao.org
 $ npm config set disturl https://npm.taobao.org/dist
 </code></pre></li>
+<li><p>安装 <a href="https://npm.taobao.org/" target="_blank" rel="external">cnpm</a> 或 <a href="https://yarnpkg.com/" target="_blank" rel="external">yarn</a> 二选一。<br> 二者都是加速node下载速度的，所以选一个装就可以。</p>
+</li>
 </ol>
+<pre><code>    npm install -g yarn    
+
+cnpm
+
+    npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+注: yarn可以把react-native设置为环境变量，当然你也可以自己设置
+</code></pre><h2 id="react-native-相关命令"><a href="#react-native-相关命令" class="headerlink" title="react-native 相关命令"></a>react-native 相关命令</h2><pre><code>react-native init XXX //创建新工程
+react-native start        //启动package，成功之后访问http://localhost:8081/index.android.bundle?platform=ios
+react-native run-ios    //运行ios模拟器
+react-native run-android //运行android
+</code></pre><h2 id="IDE选择"><a href="#IDE选择" class="headerlink" title="IDE选择"></a>IDE选择</h2><p>个人推荐<strong>WebStrom</strong><br>代码提示插件:<a href="https://github.com/virtoolswebplayer/ReactNative-LiveTemplate" target="_blank" rel="external">ReactNative-LiveTemplate</a></p>
+<p>安装方法：</p>
+<pre><code>git clone https://github.com/virtoolswebplayer/ReactNative-LiveTemplate
+</code></pre><p>打开webStrom，file -&gt; import settings -&gt; ReactNative.jar  </p>
+<h2 id="0x01-学习线路图"><a href="#0x01-学习线路图" class="headerlink" title="0x01 学习线路图"></a>0x01 学习线路图</h2><p><img src="react线路图.jpg" alt=""><br><a href="http://www.jianshu.com/p/1c487ca546f1" target="_blank" rel="external">菜鸟窝React Native 从零到高级- 0基础学习路线</a></p>
+<h3 id="JavaScript"><a href="#JavaScript" class="headerlink" title="JavaScript"></a>JavaScript</h3><p>首先是最基础的JavaScript教程，快速过一遍即可。</p>
+<ul>
+<li><a href="http://www.w3school.com.cn/js/index_pro.asp" target="_blank" rel="external">JavaScript 高级教程 - W3School</a></li>
+<li><a href="https://segmentfault.com/a/1190000006076637" target="_blank" rel="external">不再彷徨：完全弄懂JavaScript中的this（译文总结） - Segmentfault</a></li>
+</ul>
+<h3 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h3><p>ES6也称ES2015，是JavaScipt语言的较新的一种标准，在React Native开发时，我们建议使用这种标准。</p>
+<p><a href="http://yanhaijing.com/javascript/2015/09/11/learn-es2015/" target="_blank" rel="external">ECMAScript 2015 简易教程 - 颜海镜</a><br><a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">ECMAScript 6 入门 - 阮一峰</a><br><a href="https://github.com/dwqs/blog/issues/1" target="_blank" rel="external">关于Promise：你可能不知道的6件事 - dwqs/blog</a></p>
+<h3 id="语法规范"><a href="#语法规范" class="headerlink" title="语法规范"></a>语法规范</h3><p>JavaScript本身变化很快，这份由Airbnb维护的语法规范是使用较为广泛、全面的，很有参考性。</p>
+<p><a href="https://github.com/airbnb/javascript/tree/master/react" target="_blank" rel="external">Airbnb React/JSX Style Guide<br>React Native</a></p>
+<h3 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h3><p><a href="http://reactnative.cn/docs/0.31/sample-application-movies.html" target="_blank" rel="external">快速入门实例 - react native 中文网</a><br>由于会有一些开源项目和开源组件使用ES5标准进行开发，所以应该看得懂ES5代码。</p>
+<p><a href="http://bbs.reactnative.cn/topic/15/react-react-native-%E7%9A%84es5-es6%E5%86%99%E6%B3%95%E5%AF%B9%E7%85%A7%E8%A1%A8" target="_blank" rel="external">React/React Native 的ES5 ES6写法对照表 - react native 中文网</a></p>
+<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><p><a href="http://www.jianshu.com/p/31248003f375" target="_blank" rel="external">布局 FlexBox布局 - 简书</a></p>
+<h3 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h3><p><a href="http://www.jianshu.com/p/78ce267658de" target="_blank" rel="external">React-Native从入门到深入–组件生命周期 - 简书</a><br><a href="http://www.wangchenlong.org/2016/04/19/1604/191-rn-navigator/" target="_blank" rel="external">React Native 的 Navigator 组件使用方式 - Mystra</a><br><a href="http://www.jianshu.com/p/1293bb8ac969" target="_blank" rel="external">React-Native组件用法详解之ListView - 简书</a><br>更多组件学习请参考：<br><a href="http://www.lcode.org/react-native/" target="_blank" rel="external">React Native专题 - 江清清的技术专栏</a></p>
+<h3 id="React-with-Redux"><a href="#React-with-Redux" class="headerlink" title="React with Redux"></a>React with Redux</h3><p><a href="https://github.com/kenberkeley/redux-simple-tutorial" target="_blank" rel="external">Redux 简明教程 - GitHub</a><br><a href="https://segmentfault.com/a/1190000005933397" target="_blank" rel="external">Redux 状态管理方法与实例 - Segmentfault</a><br><a href="http://blog.jimmylv.info/2016-04-19-Redux-and-The-Command-Pattern/" target="_blank" rel="external">【译】Redux和命令模式 - Jimmylv</a><br><a href="http://cn.redux.js.org/" target="_blank" rel="external">Redux 中文文档 - Redux</a><br><a href="http://imweb.io/topic/57c531bc6227a4f55a8872c2" target="_blank" rel="external">React + Redux 组件化方案 - IMWeb</a><br><a href="http://richardcao.me/2016/01/12/React-Native-With-Redux/" target="_blank" rel="external">React-Native with Redux - Lifecycle</a></p>
+<h3 id="热更新"><a href="#热更新" class="headerlink" title="热更新"></a>热更新</h3><p><a href="http://wiki.talisk.cn/ReactNative/CodePush.html" target="_blank" rel="external">CodePush 热更新流程（iOS） - talisk’s Wiki</a><br><a href="http://www.jianshu.com/p/9e3b4a133bcc" target="_blank" rel="external">React Native热更新部署/热更新-CodePush最新集成总结 - 简书
+</a></p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p><a href="http://blog.cnbang.net/tech/2698/" target="_blank" rel="external">React Native 通信机制详解 - bang’s blog</a></p>
+<h3 id="推荐资源"><a href="#推荐资源" class="headerlink" title="推荐资源"></a>推荐资源</h3><p><a href="https://github.com/jondot/awesome-react-native" target="_blank" rel="external">awesome-react-native - GitHub</a><br><a href="http://reactnative.cn/" target="_blank" rel="external">React Native 中文网</a><br><a href="http://www.lcode.org/" target="_blank" rel="external">江清清的技术专栏</a></p>
 
       
     </div>
@@ -479,7 +517,7 @@ $ npm config set disturl https://npm.taobao.org/dist
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -518,7 +556,7 @@ $ npm config set disturl https://npm.taobao.org/dist
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-环境搭建"><span class="nav-number">1.</span> <span class="nav-text">0x00 环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装基础环境"><span class="nav-number">1.1.</span> <span class="nav-text">安装基础环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-react-native"><span class="nav-number">1.2.</span> <span class="nav-text">安装 react-native</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00-环境搭建"><span class="nav-number">1.</span> <span class="nav-text">0x00 环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装基础环境"><span class="nav-number">1.1.</span> <span class="nav-text">安装基础环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装-react-native"><span class="nav-number">1.2.</span> <span class="nav-text">安装 react-native</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#react-native-相关命令"><span class="nav-number">2.</span> <span class="nav-text">react-native 相关命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IDE选择"><span class="nav-number">3.</span> <span class="nav-text">IDE选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-学习线路图"><span class="nav-number">4.</span> <span class="nav-text">0x01 学习线路图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript"><span class="nav-number">4.1.</span> <span class="nav-text">JavaScript</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6"><span class="nav-number">4.2.</span> <span class="nav-text">ES6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法规范"><span class="nav-number">4.3.</span> <span class="nav-text">语法规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速入门"><span class="nav-number">4.4.</span> <span class="nav-text">快速入门</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布局"><span class="nav-number">4.5.</span> <span class="nav-text">布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件"><span class="nav-number">4.6.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#React-with-Redux"><span class="nav-number">4.7.</span> <span class="nav-text">React with Redux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#热更新"><span class="nav-number">4.8.</span> <span class="nav-text">热更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原理"><span class="nav-number">4.9.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#推荐资源"><span class="nav-number">4.10.</span> <span class="nav-text">推荐资源</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

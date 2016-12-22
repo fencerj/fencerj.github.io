@@ -96,7 +96,7 @@
 <meta property="og:description" content="ComponentComponent：组件，使用React.createClass或者extends React.Component创建的类为组件。Element：元素或者可以说是组件的实例，使用或者let label = new Label()创建的为实例。
 对于定义组件，React以前版本的写法(ES5):
 1234var Lable  = React.createClass(&amp;#123;">
-<meta property="og:updated_time" content="2016-12-21T15:33:33.000Z">
+<meta property="og:updated_time" content="2016-12-22T05:01:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React学习笔记(1)-语法">
 <meta name="twitter:description" content="ComponentComponent：组件，使用React.createClass或者extends React.Component创建的类为组件。Element：元素或者可以说是组件的实例，使用或者let label = new Label()创建的为实例。
@@ -314,11 +314,8 @@
 <p>对于定义组件，React以前版本的写法(ES5):</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Lable  = React.createClass(&#123;</div><div class="line">    render()&#123;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>React最新的写法(ES6):</p>
-<pre><code>class Label extends React.Component{
-    render(){
-    }
-}
-</code></pre><h2 id="props与state"><a href="#props与state" class="headerlink" title="props与state"></a>props与state</h2><p>props属性：组件可以定义初始值，自己不可更改props属性值，只允许从父组件中传递过来：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Label</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">    render()&#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="props与state"><a href="#props与state" class="headerlink" title="props与state"></a>props与state</h2><p>props属性：组件可以定义初始值，自己不可更改props属性值，只允许从父组件中传递过来：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 父组件</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">    render()&#123;</div><div class="line">        <span class="keyword">return</span>(&lt;Label name="标题栏"&gt;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 子组件</div><div class="line">class Label extends React.Component&#123;</div><div class="line">    render()&#123;</div><div class="line">        return(&lt;Text&gt;&#123;this.props.name&#125;&lt;/Text&gt;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>父组件向Label传递name=”标题栏”的props属性，在Label中使用this.props.name引用此属性。</p>
 <p>state属性：组件用来改变自己状态的属性，通常使用<code>setState({key:value})</code>来改变属性值，不能使用<code>this.state.xxx</code>来直接改变，<code>setState({key:value})</code>方法会触发界面刷新。</p>
@@ -326,61 +323,8 @@
 <p>在以前版本的React中定义state，props可以使用生命周期方法 <code>getInitialState()</code>和<code>getInitialProps()</code></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Label = React.createClass(&#123;</div><div class="line">    getInitialState()&#123;</div><div class="line">        <span class="attr">key</span>:value,</div><div class="line">        ...</div><div class="line">    &#125;,</div><div class="line">    getInitialProps()&#123;</div><div class="line">        <span class="attr">key</span>:value,</div><div class="line">        ...</div><div class="line">    &#125;,<span class="comment">// 这种写法需要有，不要使用；</span></div><div class="line">    render:funation()&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>在最新版本的React可以使用构造函数替代getInitialState()，getInitialState()方法定义初始值：</p>
-<pre><code>class Label extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            time: &apos;2016&apos;,
-            city: &apos;上海&apos;,
-        };
-        this.props = {
-            name:&apos;标题&apos;,
-        };
-    }
-}
-</code></pre><h2 id="默认props与props校验"><a href="#默认props与props校验" class="headerlink" title="默认props与props校验"></a>默认props与props校验</h2><pre><code>class Label extends React.Component{
-    constructor(props) {
-        super(props);
-    }
-
-   // 默认props
-   static defaultProps = {
-      city: &apos;南京&apos;,
-      index: 12,
-   }
-
-   // propTypes用于验证转入的props，当向 props 传入无效数据时，JavaScript 控制台会抛出警告
-   static propTypes = {
-      city: React.PropTypes.string.isRequired,
-      index: React.PropTypes.number.isRequired,
-   }
-
-   state = {
-      city: this.props.city,
-      index：this.props.index,
-   }
-}
-
-// or
-
-class Label extends React.Component{
-    constructor(props) {
-        super(props);
-    }
-}
-
-// 默认props
-Label.defaultProps = {
-    city: &apos;南京&apos;,
-    index: 12,
-}
-
-// propTypes用于验证转入的props，当向 props 传入无效数据时，JavaScript 控制台会抛出警告
-Label.propTypes = {
-    city: React.PropTypes.string.isRequired,
-    index: React.PropTypes.number.isRequired,
-}
-</code></pre><h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>我们把组件从装载,到渲染，再到卸载当做一次生命周期，也就是组件的生存状态从装载开始到卸载为止，期间可以根据属性的变化进行多次渲染。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">	class Label extends React.Component&#123;</div><div class="line">	    constructor(props) &#123;</div><div class="line">	        super(props);</div><div class="line">	        this.state = &#123;</div><div class="line">	            time: '2016',</div><div class="line">	            city: '上海',</div><div class="line">	        &#125;;</div><div class="line">	        this.props = &#123;</div><div class="line">	            name:'标题',</div><div class="line">	        &#125;;</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line">## 默认props与props校验</div><div class="line"></div><div class="line">	class Label extends React.Component&#123;</div><div class="line">	    constructor(props) &#123;</div><div class="line">	        super(props);</div><div class="line">	    &#125;</div><div class="line">	</div><div class="line">	   // 默认props</div><div class="line">	   static defaultProps = &#123;</div><div class="line">	      city: '南京',</div><div class="line">	      index: 12,</div><div class="line">	   &#125;</div><div class="line">	</div><div class="line">	   // propTypes用于验证转入的props，当向 props 传入无效数据时，JavaScript 控制台会抛出警告</div><div class="line">	   static propTypes = &#123;</div><div class="line">	      city: React.PropTypes.string.isRequired,</div><div class="line">	      index: React.PropTypes.number.isRequired,</div><div class="line">	   &#125;</div><div class="line">	</div><div class="line">	   state = &#123;</div><div class="line">	      city: this.props.city,</div><div class="line">	      index：this.props.index,</div><div class="line">	   &#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	// or</div><div class="line">	</div><div class="line">	class Label extends React.Component&#123;</div><div class="line">	    constructor(props) &#123;</div><div class="line">	        super(props);</div><div class="line">	    &#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	// 默认props</div><div class="line">	Label.defaultProps = &#123;</div><div class="line">	    city: '南京',</div><div class="line">	    index: 12,</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	// propTypes用于验证转入的props，当向 props 传入无效数据时，JavaScript 控制台会抛出警告</div><div class="line">	Label.propTypes = &#123;</div><div class="line">	    city: React.PropTypes.string.isRequired,</div><div class="line">	    index: React.PropTypes.number.isRequired,</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>我们把组件从装载,到渲染，再到卸载当做一次生命周期，也就是组件的生存状态从装载开始到卸载为止，期间可以根据属性的变化进行多次渲染。</p>
 <p>生命周期的三种状态：</p>
 <ul>
 <li>Mounting：装载，</li>
@@ -389,45 +333,12 @@ Label.propTypes = {
 </ul>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">componentWillMount()，组件开始装载之前调用，在一次生命周期中只会执行一次。</div><div class="line">componentDidMount()，组件完成装载之后调用，在一次生命周期中只会执行一次，从这里开始就可以对组件进行各种操作了，比如在组件装载完成后要显示的时候执行动画。</div><div class="line">componentWillUpdate(object nextProps, object nextState)，组件属性更新之前调用，每一次属性更新都会调用</div><div class="line">componentDidUpdate(object prevProps, object prevState)，组件属性更新之后调用，每次属性更新都会调用</div><div class="line">componentWillUnmount()，组件卸载之前调用</div></pre></td></tr></table></figure>
 <p>组件属性更改时会调用以下方法，在一次生命周期中可以执行多次：</p>
-<pre><code>componentWillReceiveProps(object nextProps)，已加载组件收到新的参数时调用
-shouldComponentUpdate(object nextProps, object nextState)，组件判断是否重新渲染时调用
-</code></pre><h2 id="页面跳转"><a href="#页面跳转" class="headerlink" title="页面跳转"></a>页面跳转</h2><p>初始化第一个页面：</p>
-<pre><code>import SeatPageComponent from &apos;./SeatPageComponent&apos;;
-import MainPageComponent from &apos;./MainPageComponent&apos;;
-import TrainListComponent from &apos;./TrainListComponent&apos;;
-
-class MainPage extends React.Component {
-    render() {
-        let defaultName = &apos;MainPageComponent&apos;;
-        let defaultComponent = MainPageComponent;
-        return (
-            &lt;Navigator
-                // 指定默认页面
-                initialRoute={{ name: defaultName, component: defaultComponent }}
-                // 配置页面间跳转动画
-                configureScene={(route) =&gt; {
-                    return Navigator.SceneConfigs.VerticalDownSwipeJump;
-                }}
-                // 初始化默认页面
-                renderScene={(route, navigator) =&gt; {
-                    let Component = route.component;
-                    // 将navigator作为props传递到下一个页面
-                    return &lt;Component {...route.params} navigator={navigator} /&gt;
-                }} /&gt;
-        );
-    }
-}
-</code></pre><p>跳转到下一页面：</p>
-<pre><code>jumpToNext(){
-      const { navigator } = this.props;// 由上一个页面传递过来
-      if(navigator) {
-          navigator.push({
-              name: &apos;SeatPageComponent&apos;,
-              component: SeatPageComponent,// 下一个页面
-          });
-      }
-}
-</code></pre><p>返回上一个页面：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">componentWillReceiveProps(object nextProps)，已加载组件收到新的参数时调用</div><div class="line">shouldComponentUpdate(object nextProps, object nextState)，组件判断是否重新渲染时调用</div></pre></td></tr></table></figure>
+<h2 id="页面跳转"><a href="#页面跳转" class="headerlink" title="页面跳转"></a>页面跳转</h2><p>初始化第一个页面：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> SeatPageComponent <span class="keyword">from</span> <span class="string">'./SeatPageComponent'</span>;</div><div class="line"><span class="keyword">import</span> MainPageComponent <span class="keyword">from</span> <span class="string">'./MainPageComponent'</span>;</div><div class="line"><span class="keyword">import</span> TrainListComponent <span class="keyword">from</span> <span class="string">'./TrainListComponent'</span>;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainPage</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">let</span> defaultName = <span class="string">'MainPageComponent'</span>;</div><div class="line">        <span class="keyword">let</span> defaultComponent = MainPageComponent;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            &lt;Navigator</div><div class="line">                // 指定默认页面</div><div class="line">                initialRoute=&#123;&#123; name: defaultName, component: defaultComponent &#125;&#125;</div><div class="line">                // 配置页面间跳转动画</div><div class="line">                configureScene=&#123;(route) =&gt; &#123;</div><div class="line">                    return Navigator.SceneConfigs.VerticalDownSwipeJump;</div><div class="line">                &#125;&#125;</div><div class="line">                // 初始化默认页面</div><div class="line">                renderScene=&#123;(route, navigator) =&gt; &#123;</div><div class="line">                    let Component = route.component;</div><div class="line">                    // 将navigator作为props传递到下一个页面</div><div class="line">                    return &lt;Component &#123;...route.params&#125; navigator=&#123;navigator&#125; /&gt;</div><div class="line">                &#125;&#125; /&gt;</div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>跳转到下一页面：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">jumpToNext()&#123;</div><div class="line">      <span class="keyword">const</span> &#123; navigator &#125; = <span class="keyword">this</span>.props;<span class="comment">// 由上一个页面传递过来</span></div><div class="line">      <span class="keyword">if</span>(navigator) &#123;</div><div class="line">          navigator.push(&#123;</div><div class="line">              <span class="attr">name</span>: <span class="string">'SeatPageComponent'</span>,</div><div class="line">              <span class="attr">component</span>: SeatPageComponent,<span class="comment">// 下一个页面</span></div><div class="line">          &#125;);</div><div class="line">      &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>返回上一个页面：</p>
 <pre><code>_back(){
     const { navigator } = this.props;
     if(navigator) {
@@ -435,162 +346,24 @@ class MainPage extends React.Component {
     }
 }
 </code></pre><h2 id="页面间通信"><a href="#页面间通信" class="headerlink" title="页面间通信"></a>页面间通信</h2><p>例如：从A页面打开B页面<br>A通过route.params将参数传递给B：</p>
-<pre><code>jumpToNext(){ 
-    const { navigator } = this.props;// 由上一个页面传递过来
-    if(navigator) { 
-        navigator.push({ 
-            name: &apos;SeatPageComponent&apos;, 
-            component: SeatPageComponent,// 下一个页面 
-            params: { // 需要传递个下一个页面的参数,第二个页面使用this.props.xxx获取参数
-                id: 123,
-                title: this.state.title, 
-            },
-        });
-     }
-}
-</code></pre><p>A通过route.params传递回调方法或者A的引用来让B将数据传回给A：</p>
-<pre><code>// A页面
-jumpToNext(){ 
-    const { navigator } = this.props;// 由上一个页面传递过来
-    if(navigator) { 
-        let that = this;// this作用域，参见下文函数绑定
-        navigator.push({ 
-            name: &apos;SeatPageComponent&apos;, 
-            component: SeatPageComponent,// 下一个页面 
-            params: { // 需要传递个下一个页面的参数,第二个页面使用this.props.xxx获取参数
-                title: &apos;测试&apos;,
-                getName: function(name) {that.setState({ name: name })}
-            },
-        });
-     }
-}
-
-// B页面
- _back(){
-     const { navigator } = this.props;
-     if(this.props.getName){
-         this.props.getName(&apos;测试&apos;);
-     }
-     if(navigator) {
-         navigator.pop();
-     }
- }
-</code></pre><h2 id="组件间通信"><a href="#组件间通信" class="headerlink" title="组件间通信"></a>组件间通信</h2><p>父组件–&gt;子组件， 使用props，父组件向子组件传递props</p>
-<pre><code>// 父组件
-class MainComponent extends React.Component{
-    render(){
-        return(&lt;Label name=&quot;标题栏&quot;&gt;);
-    }
-}
-
-// 子组件
-class Label extends React.Component{
-    render(){
-        return(&lt;Text&gt;{this.props.name}&lt;/Text&gt;);
-    }
-}
-</code></pre><p>子组件–&gt;父组件， 父组件在创建子组件时传递回调方法</p>
-<pre><code>// 父组件
-class MainComponent extends React.Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: &apos;测试&apos;,
-        };
-    }
-
-    // 回调方法
-    getName(str){
-         this.setState({name:str});
-    }
-
-    render(){
-        return(&lt;Label name=&quot;标题栏&quot; getName={getName}/&gt;);
-    }
-}
-
-// 子组件
-class Label extends React.Component{
-    render(){
-        return(
-            &lt;View&gt;
-                  &lt;TouchableOpacity onPress={()=&gt;this._onPress()}&gt;
-                          &lt;Text&gt;点我，{this.props.name}&lt;/Text&gt;
-                  &lt;/TouchableOpacity&gt;
-            &lt;/View&gt;);
-    }
-
-    _onPress(){
-          if(this.props.getName){
-              this.props.getName(&apos;测试&apos;)
-          }
-    }
-}
-</code></pre><p>非父子关系的组件，即没有任何嵌套关系的组件， 可以引入订阅源(<a href="http://millermedeiros.github.io/js-signals/" target="_blank" rel="external">js-signals</a>, <a href="https://github.com/mroderick/PubSubJS" target="_blank" rel="external">PubSubJS</a>)，监听订阅事件。例如，在生命周期方法中addEventListener()，removeEventListener()，在合适时机setState()。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">jumpToNext()&#123; </div><div class="line">    <span class="keyword">const</span> &#123; navigator &#125; = <span class="keyword">this</span>.props;<span class="comment">// 由上一个页面传递过来</span></div><div class="line">    <span class="keyword">if</span>(navigator) &#123; </div><div class="line">        navigator.push(&#123; </div><div class="line">            <span class="attr">name</span>: <span class="string">'SeatPageComponent'</span>, </div><div class="line">            <span class="attr">component</span>: SeatPageComponent,<span class="comment">// 下一个页面 </span></div><div class="line">            params: &#123; <span class="comment">// 需要传递个下一个页面的参数,第二个页面使用this.props.xxx获取参数</span></div><div class="line">                id: <span class="number">123</span>,</div><div class="line">                <span class="attr">title</span>: <span class="keyword">this</span>.state.title, </div><div class="line">            &#125;,</div><div class="line">        &#125;);</div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>A通过route.params传递回调方法或者A的引用来让B将数据传回给A：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// A页面</span></div><div class="line">jumpToNext()&#123; </div><div class="line">    <span class="keyword">const</span> &#123; navigator &#125; = <span class="keyword">this</span>.props;<span class="comment">// 由上一个页面传递过来</span></div><div class="line">    <span class="keyword">if</span>(navigator) &#123; </div><div class="line">        <span class="keyword">let</span> that = <span class="keyword">this</span>;<span class="comment">// this作用域，参见下文函数绑定</span></div><div class="line">        navigator.push(&#123; </div><div class="line">            <span class="attr">name</span>: <span class="string">'SeatPageComponent'</span>, </div><div class="line">            <span class="attr">component</span>: SeatPageComponent,<span class="comment">// 下一个页面 </span></div><div class="line">            params: &#123; <span class="comment">// 需要传递个下一个页面的参数,第二个页面使用this.props.xxx获取参数</span></div><div class="line">                title: <span class="string">'测试'</span>,</div><div class="line">                <span class="attr">getName</span>: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;that.setState(&#123; <span class="attr">name</span>: name &#125;)&#125;</div><div class="line">            &#125;,</div><div class="line">        &#125;);</div><div class="line">     &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// B页面</span></div><div class="line"> _back()&#123;</div><div class="line">     <span class="keyword">const</span> &#123; navigator &#125; = <span class="keyword">this</span>.props;</div><div class="line">     <span class="keyword">if</span>(<span class="keyword">this</span>.props.getName)&#123;</div><div class="line">         <span class="keyword">this</span>.props.getName(<span class="string">'测试'</span>);</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">if</span>(navigator) &#123;</div><div class="line">         navigator.pop();</div><div class="line">     &#125;</div><div class="line"> &#125;</div></pre></td></tr></table></figure>
+<h2 id="组件间通信"><a href="#组件间通信" class="headerlink" title="组件间通信"></a>组件间通信</h2><p>父组件–&gt;子组件， 使用props，父组件向子组件传递props</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 父组件</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">    render()&#123;</div><div class="line">        <span class="keyword">return</span>(&lt;Label name="标题栏"&gt;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 子组件</div><div class="line">class Label extends React.Component&#123;</div><div class="line">    render()&#123;</div><div class="line">        return(&lt;Text&gt;&#123;this.props.name&#125;&lt;/Text&gt;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>子组件–&gt;父组件， 父组件在创建子组件时传递回调方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 父组件</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainComponent</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(props) &#123;</div><div class="line">        <span class="keyword">super</span>(props);</div><div class="line">        <span class="keyword">this</span>.state = &#123;</div><div class="line">            <span class="attr">name</span>: <span class="string">'测试'</span>,</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 回调方法</span></div><div class="line">    getName(str)&#123;</div><div class="line">         <span class="keyword">this</span>.setState(&#123;<span class="attr">name</span>:str&#125;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    render()&#123;</div><div class="line">        <span class="keyword">return</span>(&lt;Label name="标题栏" getName=&#123;getName&#125;/&gt;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 子组件</div><div class="line">class Label extends React.Component&#123;</div><div class="line">    render()&#123;</div><div class="line">        return(</div><div class="line">            &lt;View&gt;</div><div class="line">                  &lt;TouchableOpacity onPress=&#123;()=&gt;this._onPress()&#125;&gt;</div><div class="line">                          &lt;Text&gt;点我，&#123;this.props.name&#125;&lt;/Text&gt;</div><div class="line">                  &lt;/TouchableOpacity&gt;</div><div class="line">            &lt;/View&gt;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    _onPress()&#123;</div><div class="line">          if(this.props.getName)&#123;</div><div class="line">              this.props.getName('测试')</div><div class="line">          &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>非父子关系的组件，即没有任何嵌套关系的组件， 可以引入订阅源(<a href="http://millermedeiros.github.io/js-signals/" target="_blank" rel="external">js-signals</a>, <a href="https://github.com/mroderick/PubSubJS" target="_blank" rel="external">PubSubJS</a>)，监听订阅事件。例如，在生命周期方法中addEventListener()，removeEventListener()，在合适时机setState()。</p>
 <p>ECMAScript<br>ES6中函数的写法：</p>
-<pre><code>class Label extends React.Component{
-    doSomething(){
-        //...
-    }// 不要使用逗号或者分号作为结尾
-}
-</code></pre><p>key:value形式定义函数的写法：</p>
-<pre><code>var Label = React.createClass({
-    doSomething:funation(){
-        //......
-    },// 需要使用逗号作为结尾，不能使用分号
-    doSomething2:function(){
-        //......
-    },
-});
-</code></pre><p>函数绑定</p>
-<pre><code>class Label extends React.Component{
-
-    // 有函数
-    sayHello(str){
-        console.log(str)
-    }
-
-    // 在onPress中使用箭头函数调用
-    // onPress={() =&gt; this.sayHello(&apos;Hello&apos;)}
-
-    // 等同于
-    //onPress={sayHello(&apos;hello&apos;).bind(this)} 
-
-    // 等同于
-    // onPress={print(&apos;hello&apos;,this)}
-
-    render(){
-        return (
-              &lt;View&gt;
-                   &lt;TouchableOpacity onPress={() =&gt; this.sayHello(&apos;Hello&apos;)}&gt;
-                          &lt;Text&gt;点我&lt;/Text&gt;
-                   &lt;/TouchableOpacity&gt;
-              &lt;/View&gt;
-        )
-    }
-
-    function print(str,this){
-        let that = this;// 注意这里this的生命周期
-        function say(str){
-            that.sayHello(str)// 此处不能再使用this
-        }
-        say(str);
-    }
-}
-</code></pre><p>Tips<br>require，import：javascript的模块管理工具，管理各个模块之间的引用，解决javascript异步加载的问题，解决js写成多个文件后浏览器加载缓慢的问题。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Label</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">    doSomething()&#123;</div><div class="line">        <span class="comment">//...</span></div><div class="line">    &#125;<span class="comment">// 不要使用逗号或者分号作为结尾</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>key:value形式定义函数的写法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Label = React.createClass(&#123;</div><div class="line">    <span class="attr">doSomething</span>:funation()&#123;</div><div class="line">        <span class="comment">//......</span></div><div class="line">    &#125;,<span class="comment">// 需要使用逗号作为结尾，不能使用分号</span></div><div class="line">    doSomething2:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="comment">//......</span></div><div class="line">    &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>函数绑定</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Label</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 有函数</span></div><div class="line">    sayHello(str)&#123;</div><div class="line">        <span class="built_in">console</span>.log(str)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// 在onPress中使用箭头函数调用</span></div><div class="line">    <span class="comment">// onPress=&#123;() =&gt; this.sayHello('Hello')&#125;</span></div><div class="line"></div><div class="line">    <span class="comment">// 等同于</span></div><div class="line">    <span class="comment">//onPress=&#123;sayHello('hello').bind(this)&#125; </span></div><div class="line"></div><div class="line">    <span class="comment">// 等同于</span></div><div class="line">    <span class="comment">// onPress=&#123;print('hello',this)&#125;</span></div><div class="line"></div><div class="line">    render()&#123;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">              &lt;View&gt;</div><div class="line">                   &lt;TouchableOpacity onPress=&#123;() =&gt; this.sayHello('Hello')&#125;&gt;</div><div class="line">                          &lt;Text&gt;点我&lt;/Text&gt;</div><div class="line">                   &lt;/TouchableOpacity&gt;</div><div class="line">              &lt;/View&gt;</div><div class="line">        )</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params">str,this</span>)</span>&#123;</div><div class="line">        <span class="keyword">let</span> that = <span class="keyword">this</span>;<span class="comment">// 注意这里this的生命周期</span></div><div class="line">        <span class="function"><span class="keyword">function</span> <span class="title">say</span>(<span class="params">str</span>)</span>&#123;</div><div class="line">            that.sayHello(str)<span class="comment">// 此处不能再使用this</span></div><div class="line">        &#125;</div><div class="line">        say(str);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><p>require，import：javascript的模块管理工具，管理各个模块之间的引用，解决javascript异步加载的问题，解决js写成多个文件后浏览器加载缓慢的问题。</p>
 <p>JavaScript中没有private，public的概念<br>使用_开头的方法代表private方法，不适用则表示public方法</p>
-<pre><code>class Label extends Component{
-    // private 函数
-    _doSomething(){
-        //......
-    }
-
-    // public 函数
-    doSomething(){
-        //......
-    }
-}
-</code></pre><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://reactjs.cn/react/docs/reusable-components.html" target="_blank" rel="external">Reactjs中文教程</a><br><a href="http://wiki.jikexueyuan.com/project/react/communicate.html" target="_blank" rel="external">极客学院React教程</a><br><a href="http://es6.ruanyifeng.com/#docs/module" target="_blank" rel="external">ECMAScript语法</a><br><a href="http://my.oschina.net/eonezhang/blog/522750" target="_blank" rel="external">JavaScript模块系统</a><br><a href="http://www.ruanyifeng.com/blog/2012/11/require_js.html" target="_blank" rel="external">require.js</a><br><a href="http://bbs.reactnative.cn/topic/20/%E6%96%B0%E6%89%8B%E7%90%86%E8%A7%A3navigator%E7%9A%84%E6%95%99%E7%A8%8B" target="_blank" rel="external">Navigator</a><br><a href="https://segmentfault.com/a/1190000003742747" target="_blank" rel="external">结合ES6+开发React</a><br><a href="http://www.tuicool.com/articles/AzQzEbq" target="_blank" rel="external">React组件通信</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Label</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</div><div class="line">    <span class="comment">// private 函数</span></div><div class="line">    _doSomething()&#123;</div><div class="line">        <span class="comment">//......</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// public 函数</span></div><div class="line">    doSomething()&#123;</div><div class="line">        <span class="comment">//......</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://reactjs.cn/react/docs/reusable-components.html" target="_blank" rel="external">Reactjs中文教程</a><br><a href="http://wiki.jikexueyuan.com/project/react/communicate.html" target="_blank" rel="external">极客学院React教程</a><br><a href="http://es6.ruanyifeng.com/#docs/module" target="_blank" rel="external">ECMAScript语法</a><br><a href="http://my.oschina.net/eonezhang/blog/522750" target="_blank" rel="external">JavaScript模块系统</a><br><a href="http://www.ruanyifeng.com/blog/2012/11/require_js.html" target="_blank" rel="external">require.js</a><br><a href="http://bbs.reactnative.cn/topic/20/%E6%96%B0%E6%89%8B%E7%90%86%E8%A7%A3navigator%E7%9A%84%E6%95%99%E7%A8%8B" target="_blank" rel="external">Navigator</a><br><a href="https://segmentfault.com/a/1190000003742747" target="_blank" rel="external">结合ES6+开发React</a><br><a href="http://www.tuicool.com/articles/AzQzEbq" target="_blank" rel="external">React组件通信</a></p>
 
       
     </div>
@@ -623,6 +396,10 @@ class Label extends React.Component{
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/22/React-Native学习笔记-3/" rel="prev" title="React-Native学习笔记(3)">
+                React-Native学习笔记(3) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -717,7 +494,7 @@ class Label extends React.Component{
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -756,7 +533,7 @@ class Label extends React.Component{
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Component"><span class="nav-number">1.</span> <span class="nav-text">Component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#props与state"><span class="nav-number">2.</span> <span class="nav-text">props与state</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#默认props与props校验"><span class="nav-number">3.</span> <span class="nav-text">默认props与props校验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期"><span class="nav-number">4.</span> <span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面跳转"><span class="nav-number">5.</span> <span class="nav-text">页面跳转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面间通信"><span class="nav-number">6.</span> <span class="nav-text">页面间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件间通信"><span class="nav-number">7.</span> <span class="nav-text">组件间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Component"><span class="nav-number">1.</span> <span class="nav-text">Component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#props与state"><span class="nav-number">2.</span> <span class="nav-text">props与state</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期"><span class="nav-number">3.</span> <span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面跳转"><span class="nav-number">4.</span> <span class="nav-text">页面跳转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面间通信"><span class="nav-number">5.</span> <span class="nav-text">页面间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件间通信"><span class="nav-number">6.</span> <span class="nav-text">组件间通信</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tips"><span class="nav-number">6.1.</span> <span class="nav-text">Tips</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
           </div>
         </section>
