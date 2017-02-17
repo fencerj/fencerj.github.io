@@ -1,0 +1,918 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="google-site-verification" content="google853817f072746855.html" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="产品,小程序,设计," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="概述
+院校库 作为每个留学公司都拥有的产品，其目的为大都以学校基本数据为主，强调数据的及时以及详尽，目的为增加信任、提供资源线索入口。但是目前院校产品同质化严重，各家留学公司都以大而全为唯一目的，导致同质化严重，所以我们需要sz找寻差异化。实现差异化的前提永远不是为了差异而差异。需要结合场景与用户画像进行梳理。
+
+存在的问题
+
+
+数据不足行业对比，Zinch等知名网站的院校库产品都有极为庞大的维护">
+<meta property="og:type" content="article">
+<meta property="og:title" content="院校库深耕">
+<meta property="og:url" content="http://fencerj.github.io/2017/02/09/院校库深耕/index.html">
+<meta property="og:site_name" content="A Geek With iOS">
+<meta property="og:description" content="概述
+院校库 作为每个留学公司都拥有的产品，其目的为大都以学校基本数据为主，强调数据的及时以及详尽，目的为增加信任、提供资源线索入口。但是目前院校产品同质化严重，各家留学公司都以大而全为唯一目的，导致同质化严重，所以我们需要sz找寻差异化。实现差异化的前提永远不是为了差异而差异。需要结合场景与用户画像进行梳理。
+
+存在的问题
+
+
+数据不足行业对比，Zinch等知名网站的院校库产品都有极为庞大的维护">
+<meta property="og:image" content="http://fencerj.github.io/院校库.png">
+<meta property="og:image" content="http://fencerj.github.io/学习曲线.png">
+<meta property="og:image" content="http://fencerj.github.io/关联.png">
+<meta property="og:image" content="http://fencerj.github.io/WX20170215-164522.png">
+<meta property="og:updated_time" content="2017-02-16T07:26:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="院校库深耕">
+<meta name="twitter:description" content="概述
+院校库 作为每个留学公司都拥有的产品，其目的为大都以学校基本数据为主，强调数据的及时以及详尽，目的为增加信任、提供资源线索入口。但是目前院校产品同质化严重，各家留学公司都以大而全为唯一目的，导致同质化严重，所以我们需要sz找寻差异化。实现差异化的前提永远不是为了差异而差异。需要结合场景与用户画像进行梳理。
+
+存在的问题
+
+
+数据不足行业对比，Zinch等知名网站的院校库产品都有极为庞大的维护">
+<meta name="twitter:image" content="http://fencerj.github.io/院校库.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '6254786771867928000',
+      author: 'IvanJ'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://fencerj.github.io/2017/02/09/院校库深耕/"/>
+
+
+
+
+
+  <title> 院校库深耕 | A Geek With iOS </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-74399018-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ec401fdeae68dca7f08b9222811e8d36";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">A Geek With iOS</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://fencerj.github.io/2017/02/09/院校库深耕/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Ivan_J">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="A Geek With iOS">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="A Geek With iOS" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                院校库深耕
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-09T10:07:56+08:00">
+                2017-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Product/" itemprop="url" rel="index">
+                    <span itemprop="name">Product</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/09/院校库深耕/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/09/院校库深耕/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p><code>院校库</code> 作为每个留学公司都拥有的产品，其目的为大都以学校基本数据为主，强调数据的及时以及详尽，目的为增加信任、提供资源线索入口。<br>但是目前院校产品同质化严重，各家留学公司都以大而全为唯一目的，导致同质化严重，所以我们需要sz找寻差异化。<br>实现差异化的前提永远不是为了差异而差异。需要结合场景与用户画像进行梳理。</p>
+</blockquote>
+<p><strong>存在的问题</strong></p>
+<blockquote>
+<ol>
+<li><p>数据不足<br>行业对比，Zinch等知名网站的院校库产品都有极为庞大的维护团队，无论从数据的完整性，及时性都是有着很大的不足。</p>
+</li>
+<li><p>运营支持欠缺<br>尽量以技术，产品等观点弥补运营数据，促进用户UGC。</p>
+</li>
+<li><p>内部支持欠缺，对业务不了解<br>各开发及测试人员与一线业务人员积极沟通，加深业务的理解</p>
+</li>
+</ol>
+</blockquote>
+<p>本篇从场景以及用户画像角度场梳理实现的逻辑，以及如何结合RN、App、小程序的入口进行开发的流程</p>
+<h2 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h2><blockquote>
+<p>上图可以看出目前院校库其实有很多的点可以深度挖掘。<br><img src="院校库.png" alt=""></p>
+</blockquote>
+<h2 id="用户特点及需求分析"><a href="#用户特点及需求分析" class="headerlink" title="用户特点及需求分析"></a>用户特点及需求分析</h2><h3 id="留学前用户"><a href="#留学前用户" class="headerlink" title="留学前用户"></a>留学前用户</h3><blockquote>
+<p>这部分用户主要为刚刚萌生留学想法的<strong>学生</strong>及<strong>家长</strong>。<br>此部分用户具体又能分为几个阶段，每个阶段的持续时间符合抛物线，用户从小白进步到中等能力需要的时间是几何上升的，初期非常快的过度，在中期停留时间最长，最后实施的时候成熟期比较平缓。</p>
+</blockquote>
+<p><img src="学习曲线.png" alt=""></p>
+<p><strong>1. 留学前-小白</strong><br>此阶段的人群对留学完全无知，仅仅只有想要留学的想法，主要需求:<code>范围获取信息</code>。<br>这个阶段维持时间一般不会太长，预计为1-2周。<br>需要了解所有关心的信息。这阶段的信息获取一般是概念上的东西，一般为：</p>
+<ul>
+<li>要去哪个国家</li>
+<li>留学平均费用</li>
+<li>就业机会</li>
+</ul>
+<p><strong>2. 留学前——中</strong><br>此阶段对基本信息有一定的了解，以确定了目标国家，需求转变为<code>具体信息</code>的获取上，同时也会对自身与目标院校的匹配产生思考，对自己进行<code>定位</code>的需求相应增加，此时应该关心的为</p>
+<ul>
+<li>学校排名</li>
+<li>某学校专业排名，专业优势，导师情况</li>
+<li>自身定位<ul>
+<li>录取几率</li>
+<li>竟力排行 </li>
+</ul>
+</li>
+<li>目标<strong>国家</strong>信息：人文，费用等</li>
+</ul>
+<p><strong>3. 留学前——中后</strong><br>此阶段的用户已经明确了具体学校，了解自己应该朝哪个方向努力并着手<code>提升背景</code>，此时更关注<code>信息的深度</code>，同时需要了解一些学校周边信息，渴望与<code>目标的接触</code>。</p>
+<ul>
+<li><p>目标学校深度信息</p>
+<ul>
+<li>学校周边信息，<code>衣、食、住、行</code></li>
+<li>学校文化——内部消息，社团排名，奇葩事，历史名人</li>
+</ul>
+</li>
+<li><p>提升背景——此时已经开始按照一定方向规划自己的留学进度</p>
+<ul>
+<li>刷GPA</li>
+<li>语言考试。</li>
+</ul>
+</li>
+<li><p>目标接触</p>
+<ul>
+<li>建立该校学生，毕业生，教授的联系</li>
+</ul>
+</li>
+</ul>
+<p><strong>4. 留学前——专家(伪)</strong><br>这种一知半解的时期最容易滋生吹牛逼心态，所以也有了<code>诉说了解的信息</code>的渴望，希望<code>更具有专业度</code>的讨论，而不是独自查询。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>根据以上归纳得知</p>
+<ul>
+<li><p>小白用户的留存率一般很低，需要配合知识的专业度吸引他们，同时资料的专业程度不一定是他们的首选，因为他们对知识是否详尽没有具体    的概念，但是对<code>概念性</code>的东西需求较大.</p>
+<p>  <strong>结论</strong>：院校产品对他们的影响不大，这个阶段一般汲取的知识为概念性的，想拉这部分用户，应该跟资讯类、搜索类、百科类产品合    作，提供给他们接口做关联引流。</p>
+</li>
+<li><p>中期用户是院校产品的<code>目标用户</code>，他们需要广泛了解所有院校，所以<code>院校排名</code>，<code>基本信息</code>需求高。由于我们资料的完整度无法与Zinch等专业院校产品比较，所以要使用技术与产品手段实现内容差异化。</p>
+<p>  <strong>结论</strong>:目标用户对所有院校的需求高，从各个维度（某专业，某国，某城市）进行学校排名，满足他们对院校横向比较的需求。基本信息的需求也较高，这部分采取<code>激励政策</code>发动<code>用户自发编辑内容</code>，此部分内容需要<code>留存专家用户</code>去制作。</p>
+</li>
+<li><p>中后期用户，他们要求的内容比较实质，一般是指单独学校信息的深入度，这里一种是<code>静态资料</code>，第二种是<code>来自学校内部声音</code>。<br>静态资料的完整性，这部分采取<code>奖励政策</code>发动<code>用户自发编辑内容</code>，此部分内容需要<code>留存专家用户</code>去制作。</p>
+<p>  <strong>结论</strong>：这部分用户对内容需求提高，需要的是<code>深度资料</code>，与<code>专业论坛</code>的交流</p>
+</li>
+<li><p>专家型用户，这部分人群的诉求比较特殊，他们基本已经找到留学机构开始办理，或者已经踏上diy之旅。这部分人群大部分精力已经在具体的流程中。在空闲之余他们也有表达的诉求，<code>装逼属性</code>及<code>激励政策</code>对他们格外重要。而他们产生的内容恰恰是最吸引其他3个阶段用户的地方。    </p>
+</li>
+</ul>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><blockquote>
+<p>根据上面的归纳总结出以下几种用户的使用场景</p>
+</blockquote>
+<h4 id="小白用户"><a href="#小白用户" class="headerlink" title="小白用户"></a>小白用户</h4><p>刚下定决心去留学，什么都不知道呢，先去查查吧。于是就开始了<code>搜索</code>和<code>提问</code>之旅，搜的词汇大多是“怎么出国留学”，“出国留学流程”，“哪个国家留学好”，“我这水平够上什么大学”。一堆乱糟糟的回答精品就在其中，漫长筛选出有用的知识点。</p>
+<p>偶尔也去<code>论坛</code>看看大家都讨论什么内容，一进去发现满眼的专业词汇一脸懵圈。还是先混混<code>基础板块</code>。</p>
+<h4 id="中期用户"><a href="#中期用户" class="headerlink" title="中期用户"></a>中期用户</h4><p>进入院校库，查找各种榜单，从多维度进行排序。会打开榜单前几名查看明细；<code>学费、历年录取线</code>等基本内容是其重点考虑的方向。</p>
+<h4 id="中后期"><a href="#中后期" class="headerlink" title="中后期"></a>中后期</h4><p>已经圈定了几所学校的具体专业，准备深入了解。一些付费获深入资料的产品会吸引他们。</p>
+<h2 id="信息提炼"><a href="#信息提炼" class="headerlink" title="信息提炼"></a>信息提炼</h2><ol>
+<li>留学小白需要引导，想办法从其他入口导入院校产品是重点运营的地方。可以通过攻略软文的推荐，留学资讯类带学校的超链等方式。<br><img src="关联.png" alt=""></li>
+<li><p>中后期用户选择好目的地，此时他们对院校产品关注度较高。</p>
+<ul>
+<li>学校基本资料重点突出——学费，录取几率测试, 就业</li>
+<li>排名可以单独出一个与院校库并列的一级入口，二级入口分为：<ul>
+<li>权威排行——QS，USNews,Times,</li>
+<li>多样排行——课业最繁忙，最土豪，收费最高，住宿最好。</li>
+</ul>
+</li>
+<li>定制化的收费服务可以按照国家或者风格分类，每类50-100元左右，学生可以深入了解对应国家的信息。这类付费用户既产生了消费，又可以看做<code>优质资源</code>进行留学全案产品的转化。信息内容包括并不限于：<ul>
+<li>海外留学生采风视频</li>
+<li>芥末内部留学讲座资料</li>
+<li>活动资格</li>
+<li>周边礼品</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>针对后期及留学后用户，院校信息补全有偿采纳，内容贡献奖赏，类似你好网的（我评我校）</p>
+</li>
+</ol>
+<h2 id="产品设计"><a href="#产品设计" class="headerlink" title="产品设计"></a>产品设计</h2><blockquote>
+<p>这一步就是如何把场景以及痛点成产品的具体实现中。<br>总结出如下功能。</p>
+<ol>
+<li>资讯引导院校入口，院校底部联想资讯。</li>
+<li>权威排行，多样排行</li>
+<li>VIP专区（深入资料，1:1 咨询）</li>
+<li>增加补全信息系统</li>
+<li>用户中心增加余额积分，关联积分商城。</li>
+</ol>
+</blockquote>
+<p>官网：</p>
+<ul>
+<li>院校库增加院校库排行一级入口</li>
+<li>院校库排行包含两个区块</li>
+<li>院校cell内容增加，标签化展示排名，点击跳入排行榜，并定位当前院校</li>
+<li>院校对比功能——如汽车之家车辆对比</li>
+<li>录取需求可以关联自主产品<br><img src="WX20170215-164522.png" alt=""></li>
+</ul>
+<p>App:用户粘性与拉新目的并存，需同时兼具可玩性与工具属性保证留存</p>
+<ul>
+<li><strong>积分商城与积分等级图标</strong>：与运营部策划的积分商城共用一套系统。</li>
+<li><strong>院校信息有偿补全</strong>:被采纳的编辑人信息会显示在院校库展示页内。例：此部分信息来源于——xxx</li>
+<li><strong>谈校风声</strong>：合并一个大版本，不单独把学校分类。针对具体院校发表评述性文章，Level5以上专家用户，支持内容打赏。此功能需要比较强大的输入功能，手机实现比较适合markdown。</li>
+</ul>
+<p>小程序: 无需留存，直命痛点。多数场景为咨询过程,老师直接发送。</p>
+<p>院校库:</p>
+<ul>
+<li>信息与品牌暴露为主，传播度</li>
+<li>重工具属性，轻社交，轻业务:减少信息采集，在用户操作场景流程中尽量减少对用户的干扰。<ul>
+<li>搜索</li>
+<li>筛选</li>
+<li>院校对比</li>
+<li>测试录取几率</li>
+<li>合理利用<strong>模板消息推送及webSocket</strong>——不限于本项目。</li>
+</ul>
+</li>
+</ul>
+<p>ps小程序申请流程可以利用微信进行更好的传播。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/产品/" rel="tag"># 产品</a>
+          
+            <a href="/tags/小程序/" rel="tag"># 小程序</a>
+          
+            <a href="/tags/设计/" rel="tag"># 设计</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/07/产品需求会怎么开/" rel="next" title="产品需求会怎么开">
+                <i class="fa fa-chevron-left"></i> 产品需求会怎么开
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/16/App端效率提升类产品设计/" rel="prev" title="App端效率提升类产品设计">
+                App端效率提升类产品设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/09/院校库深耕/"
+           data-title="院校库深耕" data-url="http://fencerj.github.io/2017/02/09/院校库深耕/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Ivan_J" />
+          <p class="site-author-name" itemprop="name">Ivan_J</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思维导图"><span class="nav-number">2.</span> <span class="nav-text">思维导图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户特点及需求分析"><span class="nav-number">3.</span> <span class="nav-text">用户特点及需求分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#留学前用户"><span class="nav-number">3.1.</span> <span class="nav-text">留学前用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">3.2.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景"><span class="nav-number">4.</span> <span class="nav-text">场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#小白用户"><span class="nav-number">4.0.1.</span> <span class="nav-text">小白用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中期用户"><span class="nav-number">4.0.2.</span> <span class="nav-text">中期用户</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中后期"><span class="nav-number">4.0.3.</span> <span class="nav-text">中后期</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信息提炼"><span class="nav-number">5.</span> <span class="nav-text">信息提炼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#产品设计"><span class="nav-number">6.</span> <span class="nav-text">产品设计</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ivan_J</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"IvanBlogg"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=5.1.0"></script>
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+
+</body>
+</html>
